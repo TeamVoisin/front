@@ -5,9 +5,10 @@ import { FooterComponent } from './footer/footer.component';
 
 import { RouterModule } from '@angular/router';
 import { ROUTES } from '../../app.route';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forRoot(ROUTES),
+    CommonModule, RouterModule.forRoot(ROUTES), BsDropdownModule.forRoot()
 
   ],
   declarations: [ MenuComponent, FooterComponent],
