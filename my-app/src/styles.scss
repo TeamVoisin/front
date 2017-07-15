@@ -1,8 +1,13 @@
-
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 /* You can add global styles to this file, and also import other style files */
-section{background-image: url("/assets/images/section-cover.png");
-background-size: cover;
-min-height:800px;
+
+section {
+    background-image: url("/assets/images/section-cover.png");
+    background-size: cover;
+    min-height: 800px;
+}
+
+body {
+    padding-top: 30px;
 }

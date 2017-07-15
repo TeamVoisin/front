@@ -6,12 +6,14 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from '../../app.route';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CollapseModule } from 'ngx-bootstrap';
 @NgModule({
-  imports: [
-    CommonModule, RouterModule.forRoot(ROUTES), BsDropdownModule.forRoot()
+  imports: [CollapseModule.forRoot(),
+   ButtonsModule.forRoot(), CommonModule, RouterModule.forRoot(ROUTES), BsDropdownModule.forRoot()
 
   ],
-  declarations: [ MenuComponent, FooterComponent],
-  exports: [ MenuComponent, FooterComponent]
+  declarations: [MenuComponent, FooterComponent],
+  exports: [MenuComponent, FooterComponent]
 })
 export class SharedModule { }

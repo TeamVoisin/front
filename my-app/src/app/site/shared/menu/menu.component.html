@@ -1,28 +1,65 @@
-<nav>
+<nav class=" visible navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#"><img alt="logo" src="../assets/images/logo.png" class="Logo"></a>
+        </div>
 
-    <div class="navbar navbar-inverse navbar-toggleable-sm" role="navigation">
-        <div class="container-fluid">
-
-            <ul class="nav navbar-nav">
-                <li><a href="#"><img alt="logo" src="../assets/images/logo.png" class="Logo"></a></li>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-toggleable-sm">
                 <li><a routerLink='/'>Accueil</a></li>
                 <li><a href="#">Consulter les annonces</a></li>
                 <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
                 <li><a href="#">Calendrier de votre quartier</a></li>
             </ul>
-            <form method="POST" class="navbar-form navbar-right" role="search">
-                <div class="form-group">
+            <form method="POST" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
+                <div id="login" class="form-group">
 
                     <input type="text" class="form-control" name="Pseudo" id="Pseudo" placeholder="pseudo" />
 
 
                     <input class="form-control" type="password" name="MDP" placeholder="mot de passe" />
-                   <input type="submit" class="btn btn-primary" name="Login" value="Connexion"/>
+                    <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
 
-                    <a class="btn btn-primary" routerLink='/register' name="register">Creer un compte</a>
+                    <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
                 </div>
             </form>
         </div>
     </div>
 </nav>
 
+<!--s'affiche à partir d'une certaine taille-->
+<nav class=" navbar-fixed-top navbar-inverse cache"> <button type="button" class="btn btn-primary btn-lg" id="bouton nav" (click)="isCollapsed = !isCollapsed">Menu 
+    </button></nav>
+<hr>
+<div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="!isCollapsed" class="card card-block card-header">
+    <div class="well well-lg coucou">
+
+        <div class="navbar-header">
+            <a href="#"><img alt="logo" src="../assets/images/logo.png" class="Logo"></a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav navbar-toggleable-sm">
+            <li><a routerLink='/'>Accueil</a></li>
+            <li><a href="#">Consulter les annonces</a></li>
+            <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
+            <li><a href="#">Calendrier de votre quartier</a></li>
+        </ul>
+        <form method="POST" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
+            <div id="login" class="form-group">
+
+                <input type="text" class="form-control" name="Pseudo" id="Pseudo" placeholder="pseudo" />
+
+
+                <input class="form-control" type="password" name="MDP" placeholder="mot de passe" />
+                <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
+
+                <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
+            </div>
+        </form>
+    </div>
+
+
+
+</div>

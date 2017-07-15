@@ -1,5 +1,3 @@
-
-
 .Logo {
     display: inline-block;
     width: 50px;
@@ -7,3 +5,37 @@
     margin: auto;
 }
 
+#login {
+    padding-top: 10px;
+}
+
+#login input {
+    display: inline;
+}
+
+input {
+    max-width: 100px;
+}
+
+.coucou {
+    position: fixed;
+    top: 40px;
+    z-index: 1000;
+}
+
+@media screen and (min-width: 1000px) {
+    .cache {
+        display: none
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .visible {
+        display: none
+    }
+}
+
+.cache button {
+    position: relative;
+    left: 50%;
+}
