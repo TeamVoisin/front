@@ -10,6 +10,7 @@ import { SharedModule } from './site/shared/shared.module';
 import { CreationAnnonceModule } from './site/creation-annonce/creation-annonce.module';
 import { ROUTES} from './app.route';
 
+
 @NgModule({
   declarations: [
     AppComponent,
