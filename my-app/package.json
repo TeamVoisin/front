@@ -27,6 +27,7 @@
     "foundation-sites": "^6.4.1",
     "ng2-dropdown": "0.0.21",
     "ngx-bootstrap": "^1.7.1",
+    "ngx-lorem-ipsum": "^0.1.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
