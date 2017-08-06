@@ -20,7 +20,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
  */
 
 @Directive({ selector: '[radioSelection]'})
-export class UnlessDirective {
+export class ResultsDirective {
   private hasView = false;
 
   constructor(

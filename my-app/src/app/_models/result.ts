@@ -1,3 +1,5 @@
+/*Classe Resultat qui est utilisé dans notre composants results et qui permet de créer un tableau 
+de résultat qui servira à simuler une requete getHTTP*/
 export class Result {
  id: number;
   category: string;
@@ -19,7 +21,7 @@ export class Result {
     this.url = url;
   }
 
-
+/*fonction qui permet de générer du lorem ipsum, utilisé juste au dessus*/
   createLorem(length?: number): string {
     let lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing ';
     lorem += 'elit, sed do eiusmod tempor incididunt ut labore et ';
@@ -33,6 +35,8 @@ export class Result {
     lorem += 'ex ea commodo consequat. Duis aute irure dolor in reprehenderit in ';
     lorem += 'voluptate velit esse cillum dolore eu fugiat nulla pariatur. ';
 
+    /*lorem.slice( 0,length) permet de découper la chaine lorem à la longueur voulue ,
+    le length en parametre est l'endroit ou se terminera le découpage*/
     length = length || lorem.length;
     return  (lorem.slice(0, length) + '.');
   }

@@ -1,16 +1,23 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 filter">
+
+            <!-- Radiobutton type bootstrap 4, utilisant la balise pren , on utilise aussi le ngModel qui est lié à angularForm, 
+                l'attribut btnRadio remplace la valeur value traditionnel
+                le ngModel relié à un seul attribut permet de dire qu'une seule valeur est permise à la fois( spécifique au bouton Radio)-->
             <pre>Filtrer par {{radioModel || 'null'}}</pre>
             <div class="btn-group">
 
-                <label class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Objet">Objet
+                <label (click)="setCategory('objets')" class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Objet">Objet
             </label>
-                <label class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Service">
+                <label (click)="setCategory('services')" class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Service">
                 Service
             </label>
-                <label class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Evenemtn">
+                <label (click)="setCategory('evenements')" class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Evenement">
                Evenement
+            </label>
+             <label (click)="setCategory('all')" class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Toutes">
+              Toutes
             </label>
 
             </div>
@@ -18,17 +25,24 @@
     </div>
 </div>
 
+
 <div class="container">
     <h2>Résultats de votre recherche</h2>
     <h2 class="lead"><strong class="text-danger">3</strong> résultats ont été trouvés pour votre recherche <strong class="text-danger">Lorem</strong></h2>
+   
 
+    <!--on fait appel à ng For pour afficher notre tableau de resultats-->
     <div *ngFor="let result of results" class="col-xs-12 col-sm-6 col-md-12">
-        <article class="search-result row">
+         <!--on crée un affichage conditionnelle en fonction de la catégorie-->
+         <!--le ngIf a deux conditions, l'affichage n'est possible que si la catégorie correspond 
+            à la chaine de caractère passé en paramètre ou si le bouton toutes est cliqué-->
+        <article class="search-result row" *ngIf="cat == result.category || cat=='all'">
             <div class="col-xs-12 col-sm-12 col-md-3">
                 <a href="#" title="Lorem ipsum" class="thumbnail"><img src= {{result.url}} alt="Lorem ipsum" /></a>
-            </div> 
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-2">
                 <ul class="meta-search">
+                    <!--chaque item est appelé à un endroit précis dans la div-->
                     <li><i class="glyphicon glyphicon-user"></i> <span>{{result.id}}</span></li>
                     <li><i class="glyphicon glyphicon-time"></i> <span>{{result.date | date:'dd/MM/yyyy'}}</span></li>
                     <li><i class="glyphicon glyphicon-tags"></i> <span>{{result.category}}</span></li>
@@ -41,42 +55,6 @@
             </div>
             <span class="clearfix borda"></span>
         </article>
-
-
     </div>
+
 </div>
-<!--
-<h2 id="myUnless">UnlessDirective</h2>
-<p>
-  The condition is currently
-  <span [ngClass]="{ 'a': !condition, 'b': condition, 'unless': true }">{{condition}}</span>.
-  <button
-    (click)="condition = !condition"
-    [ngClass] = "{ 'a': condition, 'b': !condition }" >
-    Toggle condition to {{condition ? 'false' : 'true'}}
-  </button>
-</p>
-<p *myUnless="condition" class="unless a">
-  (A) This paragraph is displayed because the condition is false.
-</p>
-
-<p *myUnless="!condition" class="unless b">
-  (B) Although the condition is true,
-  this paragraph is displayed because myUnless is set to false.
-</p>
-
-
-<h4>UnlessDirective with template</h4>
-
-<p *myUnless="condition">Show this sentence unless the condition is true.</p>
-
-<p template="myUnless condition" class="code unless">
-  (A) &lt;p template="myUnless condition" class="code unless"&gt;
-</p>
-
-<ng-template [myUnless]="condition">
-  <p class="code unless">
-    (A) &lt;template [myUnless]="condition"&gt;
-  </p>
-</ng-template>
--->
