@@ -2,14 +2,13 @@ import {Component} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register.component';
-import { FormsModule } from '@angular/forms';
-
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule,
+    CommonModule, FormsModule , ReactiveFormsModule , HttpModule
   ],
   declarations: [RegisterComponent ]
 })

@@ -6,5 +6,5 @@ export class User {
     address: string;
     email: string;
     date_inscription: Date;
-    firstName: string;
+
 }
