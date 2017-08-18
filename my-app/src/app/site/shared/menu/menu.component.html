@@ -11,13 +11,13 @@
                 <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
                 <li><a href="#">Calendrier de votre quartier</a></li>
             </ul>
-            <form method="POST" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
+            <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
                 <div id="login" class="form-group">
 
-                    <input type="text" class="form-control" name="Pseudo" id="Pseudo" placeholder="pseudo" />
+                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
 
 
-                    <input class="form-control" type="password" name="MDP" placeholder="mot de passe" />
+                    <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
                     <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
 
                     <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
@@ -46,18 +46,18 @@
             <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
             <li><a href="#">Calendrier de votre quartier</a></li>
         </ul>
-        <form method="POST" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
-            <div id="login" class="form-group">
+       <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
+                <div id="login" class="form-group">
 
-                <input type="text" class="form-control" name="Pseudo" id="Pseudo" placeholder="pseudo" />
+                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
 
 
-                <input class="form-control" type="password" name="MDP" placeholder="mot de passe" />
-                <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
+                    <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
+                    <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
 
-                <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
-            </div>
-        </form>
+                    <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
+                </div>
+            </form>
     </div>
 
 

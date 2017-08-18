@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   address: FormControl;
   email: FormControl;
   private errors: string;
-  private userData: any;
+
   // il faudra ajouter les validator et la vérif des patterns
   constructor(private registerService: RegisterService, fb: FormBuilder) {
          this.name = fb.control(''),
@@ -43,15 +43,12 @@ export class RegisterComponent implements OnInit {
     const password = this.password.value;
     const address = this.address.value;
     const email = this.email.value;
-    const that = this;
-    const action = (data: Object) => {
-      that.userData = data;
-    }
+
     if (name && password && address && email) {
       console.log(this.registerForm.value);
       this.registerService.sendData(this.registerForm.value);
     }else {
-      this.errors = 'ola il manque des chanps';
+      this.errors = 'Tous les champs sont nécessaires';
     }
   }
   ngOnInit() {
