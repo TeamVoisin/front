@@ -8,21 +8,32 @@
             <ul class="nav navbar-nav navbar-toggleable-sm">
                 <li><a routerLink='/'>Accueil</a></li>
                 <li><a href="#">Consulter les annonces</a></li>
-                <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
-                <li><a href="#">Calendrier de votre quartier</a></li>
+                <!-- ici on a des liens cachés si le boolean renvoyé par la fonction loginService.checklogin() est faux-->
+                <li [hidden]="!loginService.checkLogin()"><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
+                <li [hidden]="!loginService.checkLogin()"><a href="#">Calendrier de votre quartier</a></li>
             </ul>
-            <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
-                <div id="login" class="form-group">
+            <!-- ici on a une div cachée si le boolean renvoyé par la fonction loginService.checklogin() est vraie-->
+            <div [hidden]="loginService.checkLogin()">
+                <!-- formulaire traditionnel angular , cf register -->
+                <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm"
+                    role="search">
+                    <div id="login" class="form-group">
 
-                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
+                        <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
 
 
-                    <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
-                    <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
+                        <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
+                        <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connection" />
 
-                    <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
-                </div>
-            </form>
+                        <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
+                    </div>
+                </form>
+            </div>
+            <div  class="nav navbar-nav navbar-right navbar-toggleable-sm" [hidden]="!loginService.checkLogin()">
+                <span class="welcome">Bonjour {{firstname}} </span>
+                <input (click)="loginService.logout()" type="button" class="btn btn-primary btn-lg" name="deconnection" value="Deconnection"
+                />
+            </div>
         </div>
     </div>
 </nav>
@@ -43,23 +54,29 @@
         <ul class="nav navbar-nav navbar-toggleable-sm">
             <li><a routerLink='/'>Accueil</a></li>
             <li><a href="#">Consulter les annonces</a></li>
-            <li><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
-            <li><a href="#">Calendrier de votre quartier</a></li>
+            <li [hidden]="!loginService.checkLogin()"><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
+            <li [hidden]="!loginService.checkLogin()"><a href="#">Calendrier de votre quartier</a></li>
         </ul>
-       <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm" role="search">
-                <div id="login" class="form-group">
 
-                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
+            <div [hidden]="loginService.checkLogin()">
+                <form method="POST" (ngSubmit)="auth()" [formGroup]="loginForm" class="nav navbar-nav navbar-right navbar-toggleable-sm"
+                    role="search">
+                    <div id="login" class="form-group">
+
+                        <input type="text" class="form-control" formControlName="email" id="email" placeholder="email" />
 
 
-                    <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
-                    <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connexion" />
+                        <input class="form-control" type="password" formControlName="password" placeholder="mot de passe" />
+                        <input type="submit" class="btn btn-primary btn-lg" name="Login" value="Connection" />
 
-                    <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
-                </div>
-            </form>
+                        <a class="btn btn-primary btn-lg" routerLink='/register' name="register">Creer un compte</a>
+                    </div>
+                </form>
+            </div>
+            <div class="nav navbar-nav navbar-right navbar-toggleable-sm" [hidden]="!loginService.checkLogin()">
+                <p class="welcome" >Bonjour {{firstname}}  </p>
+                <input (click)="loginService.logout()" type="button" class="btn btn-primary btn-lg" name="deconnection" value="Deconnection"
+                />
+            </div>
     </div>
-
-
-
 </div>
