@@ -73,3 +73,7 @@ input::-webkit-input-placeholder {
 section {
     text-align: center;
 }
+.errors{
+    white-space: pre-wrap;
+    text-align: left;
+}

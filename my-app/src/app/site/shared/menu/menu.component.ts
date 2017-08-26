@@ -14,8 +14,9 @@ export class MenuComponent implements OnInit {
   loginForm: FormGroup;
   password: FormControl;
   email: FormControl;
-  user: User= null;
+  user: User = null;
   firstname: string;
+  token: string;
   private errors: string;
   // il faudra ajouter les validator et la vérif des patterns
   constructor(private loginService: LoginService, fb: FormBuilder) {
@@ -35,32 +36,42 @@ export class MenuComponent implements OnInit {
     const email = this.email.value;
 
     if (password && email) {
-      console.log(this.loginForm.value);
-      this.loginService.sendData(this.loginForm.value).subscribe(data =>
-        // on reçoit un jeton
-        sessionStorage.setItem('token', JSON.parse(JSON.stringify(data))._body));
-      // on réclame un prénom pour le stocker en session
-      if (sessionStorage.getItem('firstname') === '' && sessionStorage.getItem('token') !== '') {
+      const that = this ;
+      console.log(that.loginForm.value);
+      const callback = (data) => {
+        const token = ((data)._body);
+        sessionStorage.setItem('token', token);
+        // on introduit une variable token 
+        that.token = this.token;
+      };
+      // on attend une seconde pour exécuter l'envoi du token ca ne sert à rien mais c'est visuel
+      setTimeout(() => { this.loginService.sendData(this.loginForm.value, callback)} , 1000);
+      this.envoiToken();
+    }}
+
+    // on réclame un prénom pour le stocker en session
+
+    envoiToken() {
+      if (sessionStorage.getItem('firstname') === '' && this.token !== '') {
         // pour que la portéé de la variable s'étendent au component on déclare that=this
         const that = this;
         // on déclare un callback qui est une action qui s'effectue au retour de la réponse, ici on balance 
         // le firstname récup dans la session
-        const callback = (data) => {
+        const callback2 = (data) => {
           const userJson = ((data)._body);
           that.user = JSON.parse(userJson);
-          that.firstname = that.user.firstname
+          that.firstname = that.user.firstname;
           sessionStorage.setItem('firstname', that.firstname);
           sessionStorage.setItem('email', that.user.email)
         };
         // on envoie la requete avec ses 3 parametres
-        this.loginService.sendTokenAndGetUser(sessionStorage.getItem('token'), this.email.value, callback);
+        this.loginService.sendTokenAndGetUser(sessionStorage.getItem('token'), this.email.value, callback2);
+      } else {
+        this.errors = 'Tous les champs sont nécessaires';
       }
-    } else {
-      this.errors = 'Tous les champs sont nécessaires';
     }
-  }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-}
+  }

@@ -9,7 +9,7 @@
 
 			<!-- ici on va créer un formulaire qui renvoie vers la fonction createUser et qui sera 
 				constitué par les différents champs-->
-			<form (ngSubmit)="createUser()" [formGroup]="registerForm" class="form-horizontal" method="post" action="#">
+			<form (ngSubmit)="createUser()" [formGroup]="registerForm" class="form-horizontal" method="post" action="/">
 
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Nom</label>
@@ -80,7 +80,7 @@
 				</div>
 			</form>
 			<div *ngIf="errors" class="form-group alert alert-danger">
-				<strong>Attention!</strong> {{errors}}.
+				 <div class="errors">{{errors}}</div>
 			</div>
 		</div>
 		
