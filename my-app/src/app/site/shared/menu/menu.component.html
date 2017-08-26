@@ -7,10 +7,10 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav navbar-toggleable-sm">
                 <li><a routerLink='/'>Accueil</a></li>
-                <li><a href="#">Consulter les annonces</a></li>
+                <li><a routerLink='/results'>Consulter les annonces</a></li>
                 <!-- ici on a des liens cachés si le boolean renvoyé par la fonction loginService.checklogin() est faux-->
                 <li [hidden]="!loginService.checkLogin()"><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
-                <li [hidden]="!loginService.checkLogin()"><a href="#">Calendrier de votre quartier</a></li>
+                <li [hidden]="!loginService.checkLogin()"><a routerLink='/'>Calendrier de votre quartier</a></li>
             </ul>
             <!-- ici on a une div cachée si le boolean renvoyé par la fonction loginService.checklogin() est vraie-->
             <div [hidden]="loginService.checkLogin()">
@@ -53,9 +53,9 @@
 
         <ul class="nav navbar-nav navbar-toggleable-sm">
             <li><a routerLink='/'>Accueil</a></li>
-            <li><a href="#">Consulter les annonces</a></li>
+            <li><a routerLink='/results'>Consulter les Annonces</a></li>
             <li [hidden]="!loginService.checkLogin()"><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
-            <li [hidden]="!loginService.checkLogin()"><a href="#">Calendrier de votre quartier</a></li>
+            <li [hidden]="!loginService.checkLogin()"><a routerLink='/'>Calendrier de votre quartier</a></li>
         </ul>
 
             <div [hidden]="loginService.checkLogin()">

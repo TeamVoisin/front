@@ -71,7 +71,8 @@ export class MenuComponent implements OnInit {
       }
     }
 
-    ngOnInit() {
+    ngOnInit() {sessionStorage.setItem('firstname', '');
+    sessionStorage.setItem('token', '');
     }
 
   }
