@@ -46,12 +46,12 @@ export class MenuComponent implements OnInit {
       };
       // on attend une seconde pour exécuter l'envoi du token ca ne sert à rien mais c'est visuel
       setTimeout(() => { this.loginService.sendData(this.loginForm.value, callback)} , 1000);
-      this.envoiToken();
+      this.sendToken();
     }}
 
     // on réclame un prénom pour le stocker en session
 
-    envoiToken() {
+    sendToken() {
       if (sessionStorage.getItem('firstname') === '' && this.token !== '') {
         // pour que la portéé de la variable s'étendent au component on déclare that=this
         const that = this;

@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   email: FormControl;
   errors: string;
 
-  // il faudra ajouter les validator et la vérif des patterns
+
 
 
   constructor(private registerService: RegisterService, fb: FormBuilder) {
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  // il faudra ajouter des conditions ternaires
+
   createUser() {
     // ici on  envoie les données de formulaires au constructeur
     const name = this.name.valid ? this.name.value : null;
