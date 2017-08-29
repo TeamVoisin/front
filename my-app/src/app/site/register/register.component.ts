@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterService } from './_services/register.service';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,6 +17,7 @@ export class RegisterComponent implements OnInit {
   password: FormControl;
   address: FormControl;
   email: FormControl;
+  confirm: FormControl;
   errors: string;
 
 
@@ -35,7 +35,9 @@ export class RegisterComponent implements OnInit {
       this.password = fb.control('', [Validators.required, Validators.maxLength(255), Validators.pattern(passWordPattern)]),
       this.address = fb.control('', [Validators.required, Validators.maxLength(100), Validators.pattern(addressPattern)]),
       this.email = fb.control('', [Validators.required, Validators.maxLength(100), Validators.pattern(emailPattern)]),
+      this.confirm = fb.control('', [Validators.required, Validators.maxLength(255), Validators.pattern(passWordPattern)]),
       this.registerForm = fb.group({
+        confirm: this.confirm,
         name: this.name,
         firstname: this.firstname,
         password: this.password,
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
     const password = this.password.valid ? this.password.value : null;
     const address = this.address.valid ? this.address.value : null;
     const email = this.email.valid ? this.email.value : null;
+    const confirm = this.confirm.valid ? this.confirm.value : null;
     const errors = this.errors = '';
     const that = this;
     if (name == null) {
@@ -67,10 +70,14 @@ export class RegisterComponent implements OnInit {
       that.errors += 'votre adresse contient des caractères non autorisés \n ';
     }
 
-    console.log(name + firstname + password + email + address);
+    if (confirm !== password) {
+      that.errors += 'attention votre mot de passe est différent dans le champ de confirmation et dans le champ mot de passe';
+    }
+
+    console.log(name, firstname , password , email , address , confirm );
     // si tous les champs sont remplis, l'objet utilisateur que constitue la valeur du formulaire est envoyé
     // l'id et la date de création seront ajoutés côté serveur ou au nv de la BDD
-    if (name && password && address && email) {
+    if (name && password && address && email && that.errors === '' ) {
       console.log(this.registerForm.value);
       this.registerService.sendData(this.registerForm.value);
       that.errors = null;

@@ -17,6 +17,7 @@ export class RegisterService {
     console.log(body);
     this.http.post(this.postUrl, body, options)
       .subscribe(user =>  this.router.navigateByUrl(''));
+      alert('utilisateur enregistré avec succès');
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreationAnnonceService } from './_services/creation-annonce.service';
-
+import { Result } from './_models/result';
 @Component({
   selector: 'app-creation-annonce',
   templateUrl: './creation-annonce.component.html',
@@ -17,12 +17,13 @@ export class CreationAnnonceComponent implements OnInit {
   url: FormControl;
   email: string;
   errors: string;
+  results: Array<Result>;
 
 
 
   constructor(private creationAnnonceService: CreationAnnonceService, fb: FormBuilder) {
     // ici on constitue le formulaire dont la valeur sera envoyé en requête après contrôle
-    const titlePattern = '[A-Za-z]{2,100}';
+    const titlePattern = '[A-Za-z ]{2,100}';
     const descriptionPattern = '[a-zA-Z0-9_ ]{2,1000}';
     this.title = fb.control('', [Validators.required, Validators.maxLength(100), Validators.pattern(titlePattern)]),
       this.category_id = fb.control(''),
@@ -62,6 +63,19 @@ export class CreationAnnonceComponent implements OnInit {
     } else {
       that.errors += 'tous les champs sont nécessaires'
     }
+
+  }
+
+  articleDisplay() {
+    const that = this;
+    const callback2 = (data) => {
+      const resultListJson = ((data)._body);
+      console.log(resultListJson) ;
+      that.results = JSON.parse(resultListJson);
+      console.log(that.results);
+    }
+      this.creationAnnonceService.getListResults(sessionStorage.getItem('token'), sessionStorage.getItem('email')
+      , callback2)
   }
   ngOnInit() {
   }

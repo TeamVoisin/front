@@ -5,7 +5,7 @@ export class Result {
   category: string;
   date: Date;
   title: string;
-  details: string;
+  description: string;
   url: string;
 
   constructor(id: number,
@@ -17,7 +17,7 @@ export class Result {
     this.category = category;
     this.date = date;
     this.title = title;
-    this.details = this.createLorem(600);
+    this.description = this.createLorem(600);
     this.url = url;
   }
 
