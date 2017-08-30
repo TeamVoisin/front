@@ -12,3 +12,8 @@ pre {
     width: 290px;
     margin: auto;
 }
+
+.errors{
+    white-space: pre-wrap;
+    text-align: left;
+}

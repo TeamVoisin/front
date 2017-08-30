@@ -14,13 +14,17 @@ export class ResultsComponent implements OnInit {
   la cat qui permettra de créer un filtrage dynamique des résultats via un ngIf de la template 
   et qui sera modifiable par la fonction setCategory */
   results: Array<Result>;
+  nb: number;
   cat = 'all';
   constructor(private resultService: ResultService) {
   }
 
   ngOnInit() {
     const that = this;
-    const json = that.resultService.getListResults().subscribe ((data) => this.results = JSON.parse(data['_body'])) ;
+    const json = that.resultService.getListResults().subscribe((data) => {
+      this.results = JSON.parse(data['_body']);
+      this.nb = this.results.length;
+    });
   }
   /*cette fonction est utilisé dans le ngIf qui permet un affichage conditionnelle
   Si l'affichage est true l'article sera affiché, sinon il sera supprimé du DOM*/
