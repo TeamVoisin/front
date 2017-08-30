@@ -10,7 +10,7 @@
                 <li><a routerLink='/results'>Consulter les annonces</a></li>
                 <!-- ici on a des liens cachés si le boolean renvoyé par la fonction loginService.checklogin() est faux-->
                 <li [hidden]="!loginService.checkLogin()"><a routerLink='/creation-annonce'>Gérer ses annonces</a></li>
-                <li [hidden]="!loginService.checkLogin()"><a routerLink='/'>Calendrier de votre quartier</a></li>
+                <li class="disabled" [hidden]="!loginService.checkLogin()"><a routerLink='/'>Calendrier de votre quartier</a></li>
             </ul>
             <!-- ici on a une div cachée si le boolean renvoyé par la fonction loginService.checklogin() est vraie-->
             <div [hidden]="loginService.checkLogin()">

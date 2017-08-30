@@ -24,7 +24,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<textarea class="form-control" formControlName="description" rows="10" cols="30">Description</textarea>
+							<textarea placeholder="détaillez ce que vous partagez" class="form-control" formControlName="description" rows="10" cols="30">Description</textarea>
 						</div>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" formControlName="url" rows="10" cols="30" placeholder="adresse url de l'image" />
+							<input type="text" class="form-control" formControlName="url" rows="10" cols="30" placeholder="copier l'adresse source d'une image" />
 						</div>
 					</div>
 				</div>
@@ -53,8 +53,6 @@
 					</div>
 				</div>
 
-
-
 				<div class="form-group ">
 					<input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Reférencer">
 				</div>
@@ -62,37 +60,40 @@
 
 		</div>
 	</div>
-	
+
 </section>
 <div class="container">
-<div class="panel-title text-center">
-	<h2 class="title">Vos articles</h2>
-	<input type="button" (click)="articleDisplay();" class="btn btn-primary bouton-large  login-button" value="Afficher vos articles">
-	<hr />
+	<div class="panel-title text-center">
+		<h2 class="title">Vos articles</h2>
+		<input type="button" (click)="articleDisplay();" class="btn btn-primary bouton-large  login-button" value="Afficher vos articles">
+		<hr />
 
-</div>
-<div *ngFor="let result of results" class="col-xs-12 col-sm-6 col-md-12">
-	<!--on crée un affichage conditionnelle en fonction de la catégorie-->
-	<!--le ngIf a deux conditions, l'affichage n'est possible que si la catégorie correspond 
+	</div>
+	<div *ngFor="let result of results" class="col-xs-12 col-sm-6 col-md-12">
+		<!--on crée un affichage conditionnelle en fonction de la catégorie-->
+		<!--le ngIf a deux conditions, l'affichage n'est possible que si la catégorie correspond 
 	   à la chaine de caractère passé en paramètre ou si le bouton toutes est cliqué-->
-	<article class="search-result row">
-		<div class="col-xs-12 col-sm-12 col-md-3">
-			<a href="#" title="Lorem ipsum" class="thumbnail"><img src= {{result.url}} alt="Lorem ipsum" /></a>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-2">
-			<ul class="meta-search">
-				<!--chaque item est appelé à un endroit précis dans la div-->
-				<li><i class="glyphicon glyphicon-user"></i> <span>{{result.user.firstname}}</span></li>
-				<li><i class="glyphicon glyphicon-time"></i> <span>{{result.date | date:'dd/MM/yyyy'}}</span></li>
-				<li><i class="glyphicon glyphicon-tags"></i> <span>{{result.category.categoryLib}}</span></li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-			<h3><a href="#" title="">{{result.title}}</a></h3>
-			<p>{{result.description}}</p>
-			<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-		</div>
-		<span class="clearfix borda"></span>
-	</article>
-</div>
+		<article class="search-result row">
+			<div *ngIf="result.url!==''" class="col-xs-12 col-sm-12 col-md-3">
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img src= {{result.url}} alt="Lorem ipsum" /></a>
+			</div>
+			<div *ngIf="result.url==''" class="col-xs-12 col-sm-12 col-md-3">
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img src= "http://localhost:4200/assets/images/logo.png" alt="Lorem ipsum" /></a>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-2">
+				<ul class="meta-search">
+					<!--chaque item est appelé à un endroit précis dans la div-->
+					<li><i class="glyphicon glyphicon-user"></i> <span>{{result.user.firstname}}</span></li>
+					<li><i class="glyphicon glyphicon-time"></i> <span>{{result.date | date:'dd/MM/yyyy'}}</span></li>
+					<li><i class="glyphicon glyphicon-tags"></i> <span>{{result.category.categoryLib}}</span></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+				<h3><a href="#" title="">{{result.title}}</a></h3>
+				<p>{{result.description}}</p>
+				<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+	</div>
 </div>
