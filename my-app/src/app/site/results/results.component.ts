@@ -26,8 +26,8 @@ export class ResultsComponent implements OnInit {
       this.nb = this.results.length;
     });
   }
-  /*cette fonction est utilisé dans le ngIf qui permet un affichage conditionnelle
-  Si l'affichage est true l'article sera affiché, sinon il sera supprimé du DOM*/
+  /*cette fonction est utilisé dans le ngIf qui permet un affchage conditionnelle
+  Si l'affichage est true l'article sera affiché, sinon il sera supprimé du DOM*/i
   setCategory(myString: string): void {
     console.log(myString);
     if (myString === 'objets' || myString === 'evenements' || myString === 'services') {

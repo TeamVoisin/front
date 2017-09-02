@@ -3,7 +3,7 @@ de résultat qui servira à simuler une requete getHTTP*/
 import {Category} from './category';
 import {User} from './user';
 export class Result {
- id: number;
+  id: number;
   category: Category;
   date: string;
   title: string;

@@ -45,8 +45,8 @@ export class MenuComponent implements OnInit {
         that.token = this.token;
       };
       // on attend une seconde pour exécuter l'envoi du token ca ne sert à rien mais c'est visuel
-      setTimeout(() => { this.loginService.sendData(this.loginForm.value, callback)} , 1000);
-      this.sendToken();
+      setTimeout(() => {  this.sendToken(); }  , 2000);
+      this.loginService.sendData(this.loginForm.value, callback)
     }}
 
     // on réclame un prénom pour le stocker en session

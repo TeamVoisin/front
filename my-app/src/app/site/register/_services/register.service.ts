@@ -9,15 +9,18 @@ import { ROUTES } from '../../../app.route';
 export class RegisterService {
   private baseUrl = 'http://localhost:8080';
   private postUrl = this.baseUrl + '/users';
-  constructor(private http: Http , private router: Router ) { }
-  sendData(dataPost: Object) {
+  constructor(private http: Http, private router: Router) { }
+  sendData(dataPost: Object, callback?: (data) => any) {
     const body = JSON.stringify(dataPost);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     console.log(body);
-    this.http.post(this.postUrl, body, options)
-      .subscribe(user =>  this.router.navigateByUrl(''));
-      alert('utilisateur enregistré avec succès');
+    this.http.post(this.postUrl, body, options).subscribe ((data) => {
+      if (callback) {
+        alert(data['_body']);
+      }
+      alert(data['_body']);
+    });
   }
 
 }
