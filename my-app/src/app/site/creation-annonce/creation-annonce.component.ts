@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators , AbstractControl, NgForm  } from '@angular/forms';
 import { CreationAnnonceService } from './_services/creation-annonce.service';
 import { Result } from './_models/result';
 @Component({
@@ -17,7 +17,9 @@ export class CreationAnnonceComponent implements OnInit {
   url: FormControl;
   email: string;
   errors: string;
+  id: FormControl;
   results: Array<Result>;
+
 
 
 
@@ -37,6 +39,8 @@ export class CreationAnnonceComponent implements OnInit {
         url: this.url,
         email: this.email
       });
+
+
   }
 
   // il faudra ajouter des conditions ternaires
@@ -63,6 +67,12 @@ export class CreationAnnonceComponent implements OnInit {
     } else {
       that.errors += 'tous les champs sont nécessaires'
     }
+
+  }
+
+  deleteArticle(deleteForm: NgForm) {
+    console.log(deleteForm.value);
+    this.creationAnnonceService.deleteArticle(sessionStorage.getItem('token'), JSON.stringify(deleteForm.value));
 
   }
 

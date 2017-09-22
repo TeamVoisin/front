@@ -73,4 +73,6 @@ input::-webkit-input-placeholder {
 section {
     text-align: center;
 }
-
+label {
+    color:#00FF44;
+}
