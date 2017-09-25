@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../../app.route';
 import 'rxjs/add/operator/map';
@@ -23,7 +24,7 @@ export class CreationAnnonceService {
         }
         alert(data['_body']);
       });
-
+      this.router.navigate(['/creation-annonce']);
   }
 
   getListResults(token, email: string, callback?: (data) => any) {
@@ -43,18 +44,35 @@ export class CreationAnnonceService {
 
   }
   deleteArticle(token, id: any, callback?: (data) => any) {
-    const deleteUrl = 'http://localhost:8080/articles/delete';
+    const deleteUrl = 'http://localhost:8080/articles/' + id;
+    const headers = new Headers({ 'Authorization': 'Bearer ' + token });
+    const options = new RequestOptions({ headers: headers });
+    this.http.delete(deleteUrl, options).subscribe(data => {
+      if (callback) {
+        callback(data);
+        console.log(data);
+        this.router.navigate(['/creation-annonce']);
+      }
+      alert('tout est bien supprimé');
+
+    });
+  }
+
+  updateArticle(token, id: any, callback?: (data) => any) {
+    const updateUrl = 'http://localhost:8080/articles/update';
     const body = id;
     const headers = new Headers({ 'Authorization': 'Bearer ' + token });
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
-    this.http.post(deleteUrl, id, options).subscribe(data => {
+    this.http.post(updateUrl, id, options).subscribe(data => {
       if (callback) {
         callback(data);
         console.log(data);
       }
-      alert('tout est bien supprimé');
-      this.router.navigateByUrl('creation-annonce');
+      this.router.navigate(['/creation-annonce']);
+      alert('mise à jour effectué');
     });
   }
+
+
 }

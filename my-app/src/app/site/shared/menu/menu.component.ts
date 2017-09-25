@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
       console.log(that.loginForm.value);
       const callback = (data) => {
         const token = ((data)._body);
-        sessionStorage.setItem('token', token);
+        localStorage.setItem('token', token);
         // on introduit une variable token 
         that.token = this.token;
       };
@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit {
     // on réclame un prénom pour le stocker en session
 
     sendToken() {
-      if (sessionStorage.getItem('firstname') === '' && this.token !== '') {
+      if (localStorage.getItem('firstname') === '' && this.token !== '') {
         // pour que la portéé de la variable s'étendent au component on déclare that=this
         const that = this;
         // on déclare un callback qui est une action qui s'effectue au retour de la réponse, ici on balance 
@@ -61,18 +61,17 @@ export class MenuComponent implements OnInit {
           const userJson = ((data)._body);
           that.user = JSON.parse(userJson);
           that.firstname = that.user.firstname;
-          sessionStorage.setItem('firstname', that.firstname);
-          sessionStorage.setItem('email', that.user.email)
+          localStorage.setItem('firstname', that.firstname);
+          localStorage.setItem('email', that.user.email)
         };
         // on envoie la requete avec ses 3 parametres
-        this.loginService.sendTokenAndGetUser(sessionStorage.getItem('token'), this.email.value, callback2);
+        this.loginService.sendTokenAndGetUser(localStorage.getItem('token'), this.email.value, callback2);
       } else {
         this.errors = 'Tous les champs sont nécessaires';
       }
     }
 
-    ngOnInit() {sessionStorage.setItem('firstname', '');
-    sessionStorage.setItem('token', '');
+    ngOnInit() {this.firstname = localStorage.getItem('firstname');
     }
 
   }

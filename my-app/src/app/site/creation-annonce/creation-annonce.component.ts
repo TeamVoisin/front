@@ -26,12 +26,12 @@ export class CreationAnnonceComponent implements OnInit {
   constructor(private creationAnnonceService: CreationAnnonceService, fb: FormBuilder) {
     // ici on constitue le formulaire dont la valeur sera envoyé en requête après contrôle
     const titlePattern = '[A-Za-z ]{2,100}';
-    const descriptionPattern = '[a-zA-Z0-9_ ]{2,1000}';
+    const descriptionPattern = '[a-zA-Z0-9_\' ]{2,1000}';
     this.title = fb.control('', [Validators.required, Validators.maxLength(100), Validators.pattern(titlePattern)]),
       this.category_id = fb.control(''),
       this.description = fb.control('', [Validators.required, Validators.maxLength(62000), Validators.pattern(descriptionPattern)]),
       this.url = fb.control(''),
-      this.email = sessionStorage.getItem('email'),
+      this.email = localStorage.getItem('email'),
       this.articleForm = fb.group({
        title: this.title,
         category_id: this.category_id,
@@ -62,7 +62,7 @@ export class CreationAnnonceComponent implements OnInit {
     // l'id et la date de création seront ajoutés côté serveur ou au nv de la BDD
     if (title + description) {
       console.log(this.articleForm.value);
-      this.creationAnnonceService.sendData(sessionStorage.getItem('token'), this.articleForm.value);
+      this.creationAnnonceService.sendData(localStorage.getItem('token'), this.articleForm.value);
       that.errors = null;
     } else {
       that.errors += 'tous les champs sont nécessaires'
@@ -70,9 +70,14 @@ export class CreationAnnonceComponent implements OnInit {
 
   }
 
-  deleteArticle(deleteForm: NgForm) {
-    console.log(deleteForm.value);
-    this.creationAnnonceService.deleteArticle(sessionStorage.getItem('token'), JSON.stringify(deleteForm.value));
+  deleteArticle(result) {
+    this.creationAnnonceService.deleteArticle(localStorage.getItem('token'), result.id);
+
+  }
+
+  updateArticle(updateForm: NgForm) {
+    console.log(updateForm.value);
+    this.creationAnnonceService.updateArticle(localStorage.getItem('token'), JSON.stringify(updateForm.value));
 
   }
 
@@ -84,7 +89,7 @@ export class CreationAnnonceComponent implements OnInit {
       that.results = JSON.parse(resultListJson);
       console.log(that.results);
     }
-      this.creationAnnonceService.getListResults(sessionStorage.getItem('token'), sessionStorage.getItem('email')
+      this.creationAnnonceService.getListResults(localStorage.getItem('token'), localStorage.getItem('email')
       , callback2)
   }
   ngOnInit() {

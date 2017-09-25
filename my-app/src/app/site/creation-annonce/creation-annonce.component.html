@@ -74,7 +74,7 @@
 	</div>
 	
 	<div *ngFor="let result of results" class="col-xs-12 col-sm-6 col-md-12">
-			<form #deleteForm="ngForm" class="form-horizontal" method="post" (ngSubmit)="deleteArticle(deleteForm)">
+					<form #updateForm="ngForm" class="form-horizontal" method="post" (ngSubmit)="updateArticle(updateForm)">
 		<!--on crée un affichage conditionnelle en fonction de la catégorie-->
 		<!--le ngIf a deux conditions, l'affichage n'est possible que si la catégorie correspond 
 	   à la chaine de caractère passé en paramètre ou si le bouton toutes est cliqué-->
@@ -95,12 +95,14 @@
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">{{result.title}}</a></h3>
-				<p>{{result.description}}</p>
+				<h3><input type="text" name="title"  [(ngModel)]="result.title" title="{{result.title}}" /></h3>
+				<textarea name="description"  [(ngModel)]="result.description" > {{result.description}}</textarea>
+
 				<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 				
 				<div class="form-group ">
-					<input type="submit" class="btn btn-primary btn-lg btn-lg login-button" value="Supprimer cet article">
+						<input type="button" (click)="deleteArticle(result);" class="btn btn-alert" value="delete">
+					<input type="submit" class="btn btn-primary btn-lg btn-lg login-button" value="Editer">
 				</div>
 			</div>
 			<span class="clearfix borda"></span>

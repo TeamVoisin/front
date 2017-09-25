@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   errors: string;
   cat = 'all';
   constructor(private homeService: HomeService, fb: FormBuilder) {
-    const keywordPattern = '[a-zA-Z0-9_ ]{1,10}';
+    const keywordPattern = '[a-zA-Z0-9_ ]{1,100}';
     this.keyword = fb.control('', [Validators.required, Validators.maxLength(62000), Validators.pattern(keywordPattern)]),
       this.searchForm = fb.group({
         keyword: this.keyword

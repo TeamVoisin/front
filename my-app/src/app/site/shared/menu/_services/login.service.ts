@@ -36,7 +36,7 @@ export class LoginService {
   }
 
   checkLogin() {
-    if (sessionStorage.getItem('firstname') !== '' && sessionStorage.getItem('token') !== '') {
+    if (localStorage.getItem('firstname') !== '' && localStorage.getItem('token') !== '') {
       return true;
     } else {
       return false;
@@ -44,6 +44,9 @@ export class LoginService {
   }
 
   logout() {
+    localStorage.setItem('token', '');
+    localStorage.setItem('firstname', '');
+    localStorage.setItem('email', '');
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('firstname', '');
     sessionStorage.setItem('email', '');
