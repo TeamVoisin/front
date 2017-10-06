@@ -42,15 +42,34 @@
 				</div>
 
 				<div class="form-group">
-					<label for="email" class="cols-sm-2 control-label">Adresse Postal</label>
+					<label for="email" class="cols-sm-2 control-label">Nom de la voie</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" formControlName="address" id="address" placeholder="Entrez votre adresse" />
+							<input type="text" class="form-control" formControlName="address" id="address" placeholder="7 rue du steack" />
 						</div>
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label for="email" class="cols-sm-2 control-label">Code Postal</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="number" class="form-control" maxlength="5" formControlName="postal_code" id="postal_code" placeholder="59000" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="cols-sm-2 control-label">Ville</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" maxlength="50" formControlName="locality" id="locality" placeholder="locality" />
+						</div>
+					</div>
+				</div>
 
 
 				<div class="form-group">

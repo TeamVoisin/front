@@ -6,4 +6,6 @@ export class User {
     address: string;
     email: string;
     date_inscription: Date;
+    locality: string;
+    postal_code: number;
 }

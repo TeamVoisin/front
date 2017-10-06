@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators , AbstractControl, NgForm  } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { CreationAnnonceService } from './_services/creation-annonce.service';
 import { Result } from './_models/result';
 @Component({
@@ -33,7 +33,7 @@ export class CreationAnnonceComponent implements OnInit {
       this.url = fb.control(''),
       this.email = localStorage.getItem('email'),
       this.articleForm = fb.group({
-       title: this.title,
+        title: this.title,
         category_id: this.category_id,
         description: this.description,
         url: this.url,
@@ -57,7 +57,7 @@ export class CreationAnnonceComponent implements OnInit {
       that.errors += 'votre description contient des caractères non autorisés \n ';
     }
 
-    console.log(title + description );
+    console.log(title + description);
     // si tous les champs sont remplis, l'objet utilisateur que constitue la valeur du formulaire est envoyé
     // l'id et la date de création seront ajoutés côté serveur ou au nv de la BDD
     if (title + description) {
@@ -71,7 +71,14 @@ export class CreationAnnonceComponent implements OnInit {
   }
 
   deleteArticle(result) {
-    this.creationAnnonceService.deleteArticle(localStorage.getItem('token'), result.id);
+    let reponse: boolean;
+    reponse = confirm('êtes vous sur de vouloir supprimer cet article?');
+    if (reponse === true) {
+      this.creationAnnonceService.deleteArticle(localStorage.getItem('token'), result.id);
+    } else {
+      return;
+    }
+
 
   }
 
@@ -85,11 +92,11 @@ export class CreationAnnonceComponent implements OnInit {
     const that = this;
     const callback2 = (data) => {
       const resultListJson = ((data)._body);
-      console.log(resultListJson) ;
+      console.log(resultListJson);
       that.results = JSON.parse(resultListJson);
       console.log(that.results);
     }
-      this.creationAnnonceService.getListResults(localStorage.getItem('token'), localStorage.getItem('email')
+    this.creationAnnonceService.getListResults(localStorage.getItem('token'), localStorage.getItem('email')
       , callback2)
   }
   ngOnInit() {
