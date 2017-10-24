@@ -11,13 +11,14 @@ import { ROUTES} from './app.route';
 import { AlertModule } from 'ngx-bootstrap';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
     AlertModule.forRoot(), CreationAnnonceModule, BrowserModule, HomeModule, ResultsModule,
-    RegisterModule, RouterModule.forRoot(ROUTES), SharedModule,
+    RegisterModule, RouterModule.forRoot(ROUTES), SharedModule
 
   ],
   providers: [],

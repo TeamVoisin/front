@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
       const callback = (data) => {
         const token = ((data)._body);
         localStorage.setItem('token', token);
-        // on introduit une variable token 
+        // on introduit une variable token
         that.token = this.token;
       };
       // on attend une seconde pour exécuter l'envoi du token ca ne sert à rien mais c'est visuel
@@ -62,7 +62,7 @@ export class MenuComponent implements OnInit {
           that.user = JSON.parse(userJson);
           that.firstname = that.user.firstname;
           localStorage.setItem('firstname', that.firstname);
-          localStorage.setItem('email', that.user.email)
+          localStorage.setItem('email', that.user.email);
         };
         // on envoie la requete avec ses 3 parametres
         this.loginService.sendTokenAndGetUser(localStorage.getItem('token'), this.email.value, callback2);

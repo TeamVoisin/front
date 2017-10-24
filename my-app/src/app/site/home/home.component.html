@@ -28,7 +28,7 @@
                     <!-- Radiobutton type bootstrap 4, utilisant la balise pren , on utilise aussi le ngModel qui est lié à angularForm, 
                         l'attribut btnRadio remplace la valeur value traditionnel
                         le ngModel relié à un seul attribut permet de dire qu'une seule valeur est permise à la fois( spécifique au bouton Radio)-->
-                    <pre>Filtrer par {{radioModel || 'null'}}</pre>
+                    <pre>Filtrer par {{radioModel || 'Toutes'}}</pre>
                     <div class="btn-group">
         
                         <label (click)="setCategory('objets')" class="radio-inline btn btn-primary btn-lg" [(ngModel)]="radioModel" btnRadio="Objet">Objet

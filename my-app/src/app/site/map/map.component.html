@@ -1,0 +1,11 @@
+<agm-map  [latitude]="lat" [longitude]="lng">
+    <div *ngFor="let result of results" >
+<agm-marker [markerDraggable]="true" [title]="result.user.firstname" [latitude]="result.user.latitude" [longitude]="result.user.longitude">
+    <agm-info-window>
+        <h3 ><strong>{{result.title}}</strong></h3>
+        <p>partagé par:  {{result.user.firstname}}</p>
+      </agm-info-window>
+</agm-marker>
+</div>
+
+</agm-map>

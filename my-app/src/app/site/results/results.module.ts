@@ -4,10 +4,10 @@ import { ResultsComponent } from './results.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
+import {MapModule} from '../map/map.module';
 @NgModule({
   imports: [FormsModule , ButtonsModule,
-    CommonModule,
+    CommonModule, MapModule
 
   ],
   declarations: [ResultsComponent]
