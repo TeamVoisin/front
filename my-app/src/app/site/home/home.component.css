@@ -2,14 +2,19 @@
 .search-background img {
     width: 100%;
 }
+
+.well{
+    opacity: 0.8;
+}
+
 .well-searchbox {
   height: 125px;
-  width: 400px;
+  width: 300px;
   margin:auto;
   padding: 19px;
-  opacity:0.7;
+  opacity:1;
   background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #e3e3e3;
+  border:#F68B12 solid 2px;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -19,7 +24,7 @@
     color: #fff;
 }
 
-.home-section{padding-top:200px;
+.home-section{padding-top:0px;
 
 }
 
@@ -28,6 +33,8 @@ pre {
     margin: auto;
 }
 .filter {
+    background: rgba(0, 0, 0, 0.6);
+    opacity:1;
     margin:auto;
     text-align:center;
     height:100px;

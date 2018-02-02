@@ -1,29 +1,31 @@
 
 
         <section class="home-section">
+            
             <div class="well-searchbox">
                 <form (ngSubmit)="search()" [formGroup]="searchForm" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-md-4 control-label">recherche par mot</label>
-                        <div class="col-md-8">
+                        <div class="col-xs-8">
                             <input formControlName="keyword" type="text" class="form-control" placeholder="mot clé">
                         </div>
                     </div>
 
-                    <div class="col-sm-offset-4 col-sm-5">
+                    <div class="col-xs-offset-4 col-xs-5">
                         <input type="submit" class=" form-control btn btn-primary btn-lg" value="chercher">
                     </div>
                 </form>
                 <div *ngIf="errors" class="form-group alert alert-danger">
                     <div class="errors">{{errors}}</div>
                </div>
+               
             </div>
-        </section>
+       
             
 
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 filter">
+                <div class="col-xs-12 filter well">
         
                     <!-- Radiobutton type bootstrap 4, utilisant la balise pren , on utilise aussi le ngModel qui est lié à angularForm, 
                         l'attribut btnRadio remplace la valeur value traditionnel
@@ -49,10 +51,11 @@
         </div>
         
         
-        <div class="container">
+        <div *ngIf="results" class=" well container">
+            <div >
             <h2>Résultats de votre recherche</h2>
             <h2 class="lead"><strong class="text-danger">{{nb}}</strong> résultats ont été trouvés pour votre recherche </h2>
-           
+           </div>
         
             <!--on fait appel à ng For pour afficher notre tableau de resultats-->
             <div *ngFor="let result of results" class="col-xs-12 col-sm-6 col-md-12">
@@ -84,3 +87,4 @@
             </div>
         
         </div>
+        </section>

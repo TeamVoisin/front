@@ -2,9 +2,9 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-section {
+section  {
     background-image: url("/assets/images/section-cover.png");
-    background-size: cover;
+    background-repeat:no-repeat;
     min-height: 800px;
 }
 
@@ -13,6 +13,5 @@ body {
 }
 
 .errors{
-    white-space: pre-wrap;
     text-align: left;
 }
