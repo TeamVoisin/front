@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from './_services/login.service';
-import { User } from '../../register/_models/user'
+import { User } from 'app/site/shared/_models/user';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',

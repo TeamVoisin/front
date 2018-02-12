@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Result } from '../../site/results/_models/result';
 import { ResultService} from '../../site/results/_services/results.service';
+import { Result } from 'app/site/shared/_models/result';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
