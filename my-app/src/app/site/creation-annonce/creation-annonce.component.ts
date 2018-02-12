@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { CreationAnnonceService } from './_services/creation-annonce.service';
-import { Result } from './_models/result';
+import { Result } from 'app/site/shared/_models/result';
+
 @Component({
   selector: 'app-creation-annonce',
   templateUrl: './creation-annonce.component.html',
@@ -15,6 +16,7 @@ export class CreationAnnonceComponent implements OnInit {
   title: FormControl;
   description: FormControl;
   url: FormControl;
+  image: FormControl;
   email: string;
   errors: string;
   id: FormControl;
@@ -33,6 +35,7 @@ export class CreationAnnonceComponent implements OnInit {
       this.url = fb.control(''),
       this.email = localStorage.getItem('email'),
       this.articleForm = fb.group({
+        image: this.image,
         title: this.title,
         category_id: this.category_id,
         description: this.description,
@@ -64,6 +67,7 @@ export class CreationAnnonceComponent implements OnInit {
       console.log(this.articleForm.value);
       this.creationAnnonceService.sendData(localStorage.getItem('token'), this.articleForm.value);
       that.errors = null;
+      this.articleDisplay();
     } else {
       that.errors += 'tous les champs sont nécessaires'
     }
@@ -75,6 +79,7 @@ export class CreationAnnonceComponent implements OnInit {
     reponse = confirm('êtes vous sur de vouloir supprimer cet article?');
     if (reponse === true) {
       this.creationAnnonceService.deleteArticle(localStorage.getItem('token'), result.id);
+      this.articleDisplay();
     } else {
       return;
     }
@@ -85,20 +90,34 @@ export class CreationAnnonceComponent implements OnInit {
   updateArticle(updateForm: NgForm) {
     console.log(updateForm.value);
     this.creationAnnonceService.updateArticle(localStorage.getItem('token'), JSON.stringify(updateForm.value));
-
+    this.articleDisplay()
   }
 
   articleDisplay() {
     const that = this;
     const callback2 = (data) => {
       const resultListJson = ((data)._body);
-      console.log(resultListJson);
       that.results = JSON.parse(resultListJson);
-      console.log(that.results);
     }
     this.creationAnnonceService.getListResults(localStorage.getItem('token'), localStorage.getItem('email')
       , callback2)
   }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.articleForm.get('image').setValue({
+          name: file.name,
+          type: file.type,
+          image: reader.result.split(',')[1]
+        })
+      };
+    }
+  }
+
   ngOnInit() {
   }
 }

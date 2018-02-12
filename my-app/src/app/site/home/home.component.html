@@ -66,7 +66,10 @@
                     <div  *ngIf="result.url!==''"class="col-xs-12 col-sm-12 col-md-3">
                         <a href="#" title="Lorem ipsum" class="thumbnail"><img src= {{result.url}} alt="Lorem ipsum" /></a>
                     </div>
-                    <div  *ngIf="result.url==''"class="col-xs-12 col-sm-12 col-md-3">
+                    <div *ngIf="result.image!==null" class="col-xs-12 col-sm-12 col-md-3">
+                        <a href="#" title="Lorem ipsum" class="thumbnail"><img [src] = "'data:'+result.image.type+';base64,'+result.image.image" alt= {{result.image.name}}  /></a>
+                    </div>
+                    <div *ngIf="result.url=='' && result.image==null" class="col-xs-12 col-sm-12 col-md-3">
                         <a href="#" title="Lorem ipsum" class="thumbnail"><img src= "http://localhost:4200/assets/images/logo.png" alt="Lorem ipsum" /></a>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-2">

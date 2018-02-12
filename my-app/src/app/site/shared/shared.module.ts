@@ -14,7 +14,7 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
   ButtonsModule.forRoot(), CommonModule, RouterModule.forRoot(ROUTES), BsDropdownModule.forRoot()
 
   ],
-  declarations: [MenuComponent, FooterComponent],
-  exports: [MenuComponent, FooterComponent]
+  declarations: [MenuComponent, FooterComponent ],
+  exports: [MenuComponent, FooterComponent ]
 })
 export class SharedModule { }

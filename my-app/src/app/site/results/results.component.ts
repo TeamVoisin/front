@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 /*on importe la classe Result pour l'utiliser dans le tableau*/
-import { Result } from './_models/result';
 import { ResultService } from './_services/results.service';
+import { Result } from 'app/site/shared/_models/result';
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',

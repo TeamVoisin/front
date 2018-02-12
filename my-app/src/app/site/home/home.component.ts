@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 /*on importe la classe Result pour l'utiliser dans le tableau*/
-import { Result } from './_models/result';
 import { HomeService } from './_services/home.service';
+import { Result } from 'app/site/shared/_models/result';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

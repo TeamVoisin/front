@@ -30,7 +30,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="description" class="cols-sm-2 control-label">Adresse url de l'image</label>
+					<label for="url" class="cols-sm-2 control-label">Adresse url de l'image</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -40,11 +40,11 @@
 				</div>
 
 				<div class="form-group">
-					<label for="description" class="cols-sm-2 control-label">image personnelle</label>
+					<label for="image" class="cols-sm-2 control-label">image personnelle</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<input type="file" value="selectionner" class="form-control" formControlName="image" rows="10" cols="30"  />
+							<input type="file" (change)="onFileChange($event)" value="selectionner" class="form-control" #fileInput   />
 						</div>
 					</div>
 				</div>
@@ -92,7 +92,10 @@
 			<div *ngIf="result.url!==''" class="col-xs-12 col-sm-12 col-md-3">
 				<a href="#" title="Lorem ipsum" class="thumbnail"><img src= {{result.url}} alt="Lorem ipsum" /></a>
 			</div>
-			<div *ngIf="result.url==''" class="col-xs-12 col-sm-12 col-md-3">
+			<div *ngIf="result.image!==null" class="col-xs-12 col-sm-12 col-md-3">
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img [src] = "'data:'+result.image.type+';base64,'+result.image.image" alt= {{result.image.name}}  /></a>
+			</div>
+			<div *ngIf="result.url=='' && result.image==null" class="col-xs-12 col-sm-12 col-md-3">
 				<a href="#" title="Lorem ipsum" class="thumbnail"><img src= "http://localhost:4200/assets/images/logo.png" alt="Lorem ipsum" /></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
